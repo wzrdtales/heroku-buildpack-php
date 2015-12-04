@@ -32,12 +32,12 @@ if [[ -n "$NEW_RELIC_LICENSE_KEY" ]]; then
         tail -qF -n 0 /tmp/heroku.ext-newrelic.newrelic-daemon.${PORT}.log 1>&2 &
 
         # daemon start
-
         if [[ -n "$PROXY" ]]
-          /app/.heroku/php/bin/newrelic-daemon -f -l "/tmp/heroku.ext-newrelic.newrelic-daemon.${PORT}.log" -d "${NEW_RELIC_LOG_LEVEL}" -p "/tmp/newrelic-daemon.pid" -x ${PROXY} &
+          /app/.heroku/php/bin/newrelic-daemon -f -l "/tmp/heroku.ext-newrelic.newrelic-daemon.${PORT}.log" -d "${NEW_RELIC_LOG_LEVEL}" -p "/tmp/newrelic-daemon.pid" -x "${PROXY}" &
         else
           /app/.heroku/php/bin/newrelic-daemon -f -l "/tmp/heroku.ext-newrelic.newrelic-daemon.${PORT}.log" -d "${NEW_RELIC_LOG_LEVEL}" -p "/tmp/newrelic-daemon.pid" &
         fi
+
         # give it a moment to connect
         sleep 2
     else
