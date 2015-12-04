@@ -67,7 +67,7 @@ if [[ "$BUILDPACK_BRANCH" != v* && "$BUILDPACK_BRANCH" != "master" ]]; then
     S3_URL="develop"
 fi
 
-if [[ -n "$PACKAGE_MIRROR" ]]; then
+if [[ -n ${PACKAGE_MIRROR:-} ]]; then
   S3_URL="${PACKAGE_MIRROR}/dist-${STACK}-${S3_URL:-"master"}"
 else
   S3_URL="https://lang-php.s3.amazonaws.com/dist-${STACK}-${S3_URL:-"master"}"
